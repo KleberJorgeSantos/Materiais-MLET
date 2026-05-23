@@ -1,5 +1,19 @@
 # Changelog
 
+## 2026-05-22
+
+- Adicionado o pacote público do Datathon 7-MLET em `fase-05-deploy-avancado-de-ia-generativa/datathon/7mlet/`, com o desafio financeiro sanitizado de experimentação adaptativa em ofertas.
+- Complementado o pacote 7-MLET com critério obrigatório de arquitetura-alvo em Azure, diagramas Mermaid do fluxo da aplicação, estrutura esperada de repositório e exemplos didáticos de código.
+- Substituída a obrigatoriedade de um dataset único por orientação de bases Kaggle compatíveis e instruções para criação de datasets derivados, com enriquecimento sintético documentado para braços de decisão, recompensas e eventos atrasados.
+- Reestruturada a seção de entregáveis obrigatórios do Datathon 7-MLET como listagem extensa por etapa (0 a 8), com objetivo, sub-bullets técnicos detalhados e critério de evidência de aceite em cada etapa; a matriz tabular anterior foi absorvida nesta listagem.
+- Movida a seção "Entregáveis obrigatórios" para o final do arquivo, depois de "Proveniência e revisão", para funcionar como referência de fechamento que os grupos consultam antes da submissão.
+- Incluída subseção "Critérios de apresentação" cobrindo FinOps (ROI, custo, TCO), arquitetura técnica e cenários de escala e redução por volume de requisições; checklist do Demo Day e Etapa 8 da listagem de entregáveis alinhados para exigir cobertura explícita dessas dimensões no pitch.
+- Marcada a demonstração ao vivo ou gravada da plataforma durante o pitch como desejável e bonificada com pontos extras, com nota correspondente na subseção "Critérios de apresentação", item adicional no checklist do Demo Day e bullet específico na Etapa 8 da listagem de entregáveis (incluindo exigência de plano de contingência).
+- Adicionada seção "Objetivo final — uma plataforma que aprende de forma automática" contrastando teste A/B (Cientista de Dados decide) com Multi-Armed Bandits (o sistema identifica a melhor ação) e listando o que a banca observa para considerar a entrega como plataforma de aprendizado contínuo.
+- Adicionadas referências algorítmicas a Thompson Sampling e Nilos-UCB, exemplo financeiro de inferência contextual e exigência de camada de retreino, aprovação e gestão do ciclo de vida de políticas adaptativas.
+- Criado o índice local de Datathon da Fase 05 em `fase-05-deploy-avancado-de-ia-generativa/datathon/README.md`.
+- Atualizados os indicadores públicos de cobertura da MLET7 e o README da Fase 05 para apontar para o novo pacote.
+
 ## 2026-05-07
 
 - Adicionados 56 scripts Python completos e executáveis para apoiar lives técnicas, grupos de estudo e lives de grupos de estudo:

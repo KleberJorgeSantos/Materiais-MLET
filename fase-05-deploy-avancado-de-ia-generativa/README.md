@@ -29,7 +29,7 @@ O desafio final exige maturidade acumulada das fases anteriores: empacotar, serv
 ## Disciplinas
 
 | # | Nome | Papel na fase | Aulas |
-|---|------|---------------|-------|
+| --- | --- | --- | --- |
 | [01](01-deploy-modelos-ia-generativa/README.md) | Deploy de Modelos de IA Generativa | servir e otimizar modelos generativos | 3 |
 | [02](02-deploy-agentes-llms/README.md) | Deploy de Agentes com LLMs | operacionalizar agentes com tools e RAG | 5 |
 | [03](03-aplicacoes-avancadas-escalabilidade/README.md) | Aplicações Avançadas e Escalabilidade | escalar fluxos multiagente e stateful | 4 |
@@ -46,6 +46,8 @@ O desafio final exige maturidade acumulada das fases anteriores: empacotar, serv
 
 ## Material de apoio da fase
 
+- [Datathon](datathon/README.md)
+- [Datathon 7-MLET: Experimentação adaptativa em ofertas financeiras](datathon/7mlet/README.md)
 - [Grupos de estudo](grupos-de-estudo/README.md)
 - [Live: Deploy de Agentes com LLMs](02-deploy-agentes-llms/lives/fase05-live-deploy-de-agentes-com-llms/README.md)
 - [Live: Aplicações Avançadas, Escalabilidade e LLMOps](03-aplicacoes-avancadas-escalabilidade/lives/fase05-live-aplicacoes-avancadas-escalabilidade-e-llmops/README.md)

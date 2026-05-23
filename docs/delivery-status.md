@@ -26,7 +26,7 @@ Use este documento para responder três perguntas:
 | Turma | Revisão pública | Cobertura encontrada | Decisão pública |
 | --- | --- | --- | --- |
 | [MLET6](cohorts/mlet-06.md) | Revisada em 2026-05-07 | 35 materiais indexados nas fases 01-05 | Cobertura pública pronta. |
-| [MLET7](cohorts/mlet-07.md) | Revisada em 2026-05-07 | 25 materiais indexados nas fases 01-04 | Parcial; fase 04 final e fase 05 ainda precisam de material público. |
+| [MLET7](cohorts/mlet-07.md) | Revisada em 2026-05-22 | 26 materiais indexados nas fases 01-05 | Parcial; fase 05 possui pacote inicial de Datathon e a fase 04 final ainda precisa de curadoria pública. |
 | [MLET8](cohorts/mlet-08.md) | Revisada em 2026-05-07 | 19 materiais indexados nas fases 01-03 | Parcial; fases 03-05 precisam de revisão de publicação. |
 | [MLET9](cohorts/mlet-09.md) | Revisada em 2026-05-07 | 7 materiais indexados na fase 01 | Parcial; fase 02 em diante ainda não está indexada publicamente. |
 | [MLET10](cohorts/mlet-10.md) | Revisada em 2026-05-07 | Nenhum material público indexado ainda | Página serve como checklist de publicação futura. |
@@ -53,7 +53,7 @@ Use este documento para responder três perguntas:
 
 ## Próximas revisões
 
-1. Publicar ou indexar bundles públicos faltantes da MLET7 nas fases 04 e 05 quando estiverem curados.
+1. Publicar ou indexar bundles públicos faltantes da MLET7 na fase 04 final e nos demais eventos da fase 05 quando estiverem curados.
 2. Publicar ou indexar conclusão da fase 03 da MLET8 e depois fases 04 e 05 quando houver material reutilizável.
 3. Publicar ou indexar MLET9 a partir da fase 02 sem transformar a documentação do repositório em um status de uma única turma.
 4. Usar MLET10-MLET13 como checklists públicos de publicação quando materiais reutilizáveis existirem.
