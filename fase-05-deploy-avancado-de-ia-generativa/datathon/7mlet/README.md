@@ -11,104 +11,7 @@ O Datathon 7-MLET propõe um desafio único no domínio financeiro regulado: pro
 
 O objetivo não é reproduzir um sistema bancário real. O objetivo é mostrar maturidade técnica: formular o problema, construir baselines, versionar dados, servir componentes, avaliar qualidade, monitorar risco, documentar limitações e explicar decisões para públicos técnicos e de negócio.
 
-## Critérios de avaliação
-
-A avaliação segue o contrato da Fase 05:
-
-| Dimensão | Peso | O que a banca procura |
-| --- | ---: | --- |
-| Critérios de negócio | 30% | aderência ao problema escolhido, clareza de impacto, viabilidade, comunicação executiva |
-| Validação técnica global | 70% | pipeline, MLOps, avaliação, observabilidade, segurança, governança, documentação e uso de PyTorch/MLflow quando aplicável |
-
-Os grupos devem definir métricas específicas para o desafio. Essas métricas precisam ser justificadas no relatório técnico e conectadas ao impacto de negócio, mas não substituem os critérios oficiais da fase.
-
-### Critério obrigatório — Arquitetura-alvo em Azure
-
-A entrega arquitetural do Datathon deve ser planejada exclusivamente para Microsoft Azure. O grupo não precisa publicar recursos pagos nem manter uma implantação ativa em nuvem, mas deve apresentar uma arquitetura-alvo Azure, um plano de implantação e a justificativa dos serviços escolhidos. Arquiteturas baseadas em AWS, Google Cloud, provedores locais ou soluções genéricas multi-cloud ficam fora do escopo da avaliação, exceto quando usadas apenas como comparação breve de trade-offs.
-
-A banca não espera uma arquitetura única. O grupo pode escolher diferentes combinações de serviços Azure, desde que a proposta cubra computação, exposição de API ou interface, persistência de dados, observabilidade, segurança/governança e o componente de IA/RAG quando aplicável.
-
-| Categoria | Exemplos de serviços Azure aceitáveis |
-| --- | --- |
-| Computação e execução | Azure Container Apps, Azure App Service, Azure Functions, AKS, Azure Machine Learning endpoints, Azure Databricks Jobs |
-| API, interface e integração | Azure API Management, endpoints em App Service/Container Apps, Azure Functions HTTP, Azure Static Web Apps, Azure Front Door quando fizer sentido |
-| Dados e eventos | Azure Blob Storage ou Data Lake Storage Gen2, Azure SQL, Azure Database for PostgreSQL, Azure Cosmos DB, Azure Service Bus, Azure Event Hubs |
-| IA, agentes e RAG | Azure AI Foundry, Azure OpenAI/Foundry Models, Azure AI Search, Azure Machine Learning, embeddings, busca vetorial, busca híbrida ou semântica |
-| Observabilidade | Azure Monitor, Application Insights, Log Analytics, dashboards, alertas e rastreamento de métricas técnicas e de negócio |
-| Segurança e governança | Microsoft Entra ID, Managed Identity, Azure Key Vault, RBAC, Azure Policy, private endpoints/VNet quando justificado, plano LGPD e revisão humana |
-
-A arquitetura deve explicar como decisões, experimentos, políticas, modelos, prompts e versões seriam rastreados. Também deve indicar quais métricas seriam monitoradas em produção, incluindo latência, disponibilidade, custo estimado, qualidade da recomendação, exploração, fairness, segurança e uso do assistente com LLM.
-
-### Critérios de apresentação
-
-Além do conteúdo técnico, a banca avalia trê dimensões específicas durante o pitch do Demo Day. Os grupos devem reservar tempo no roteiro para tratar cada uma delas com evidência (números, faixas, diagramas, premissas), não apenas com afirmação.
-
-| Dimensão | O que a banca procura |
-| --- | --- |
-| FinOps (ROI, custo e TCO) | Estimativa qualitativa de custo de execução por serviço Azure escolhido, projeção de Retorno sobre Investimento (ROI) considerando o ganho de negócio esperado da política adaptativa em relação a uma campanha estática, e Total Cost of Ownership (TCO) cobrindo desenvolvimento, operação, observabilidade, retreino, governança e suporte. O grupo deve discutir trade-offs entre alternativas mais baratas e mais caras, identificar o ponto de equilíbrio em que a plataforma adaptativa compensa o custo adicional e indicar quais componentes geram custo mesmo ociosos. |
-| Arquitetura técnica | Justificativa explícita de cada serviço Azure escolhido, mapeamento dos limites entre componentes, fluxos de dados e de decisão, pontos de falha, fronteiras de segurança e identidade, e como o ciclo de vida de modelos e políticas é controlado. A banca espera coerência entre o diagrama de componentes, o código do repositório e o plano de operação, sem zonas cinzentas entre camadas, e racional sobre alternativas descartadas. |
-| Cenários de escala e redução | Maleabilidade arquitetônica em função do volume de requisições: como a arquitetura cresce de um cenário de baixa carga (poucas decisões por hora, experimentação isolada) para alta carga (picos sazonais, campanhas simultâneas, múltiplos canais), e como a redução é tratada quando o uso cai. O grupo deve indicar quais serviços escalam automaticamente, quais exigem ajuste manual, quais geram custo mesmo ociosos, e como o sistema preserva latência aceitável, qualidade da exploração e garantias de segurança sob pressão. |
-
-A análise não exige números reais de produção, mas exige racional consistente. Estimativas qualitativas, comparações relativas, faixas de magnitude e cenários hipotéticos com premissas claras são aceitos, desde que apresentados com transparência sobre as suposições e referência ao diagrama de arquitetura Azure do repositório.
-
-Demonstrações ao vivo ou gravadas durante a apresentação são desejáveis e somam pontos extras na avaliação. Um pitch que mostra a plataforma decidindo — selecionando um braço, registrando a recompensa, evoluindo a política e reagindo a um cenário adversarial — tem peso narrativo maior do que um pitch que apenas descreve o que o sistema faria, mesmo quando o cenário é sintético ou executado em ambiente local. Os grupos devem reservar tempo de pitch para a demonstração e prever um plano de contingência caso ela falhe ao vivo (por exemplo, gravação alternativa, dataset de demonstração reduzido, cenário pré-renderizado).
-
-## Regras de dados e publicação
-
-- Use uma base Kaggle compatível com marketing, ofertas, propensão, campanhas, recomendação ou conversão como base factual do projeto.
-- Use dados sintéticos apenas para enriquecer o problema com braços de decisão, recompensas intermediárias, eventos atrasados, políticas comerciais fictícias e golden set.
-- Não use dados reais de clientes, estudantes, professores, empresas parceiras ou sistemas internos.
-- Não publique segredos, tokens, chaves de API, dumps, traces, logs com dados sensíveis ou modelos binários grandes.
-- Não use atributos protegidos para discriminar pessoas ou grupos.
-- Documente a base legal, o propósito de uso, a minimização de dados e o ciclo de retenção.
-- Mantenha decisões sensíveis com humano no loop. O sistema deve apoiar análise e decisão; não deve executar bloqueios, reportes regulatórios ou recomendações financeiras autônomas sem controle humano.
-
-## Bases Kaggle orientadoras e criação dos datasets
-
-O grupo deve escolher uma base Kaggle adequada ao problema de experimentação adaptativa. A base não precisa ser única para todos os grupos, mas deve ter relação clara com marketing, ofertas, propensão, campanhas, recomendação, conversão ou comportamento de cliente.
-
-Exemplos de bases Kaggle que podem orientar a escolha:
-
-| Base | Link | Como usar no desafio |
-| --- | --- | --- |
-| Bank Marketing | <https://www.kaggle.com/datasets/henriqueyamahata/bank-marketing> | Campanhas bancárias, propensão de conversão e decisão de oferta. |
-| Bank Marketing Data Set | <https://www.kaggle.com/datasets/tunguz/bank-marketing-data-set> | Variação do problema de marketing bancário para comparação ou substituição. |
-| Bank Term Deposit Subscription | <https://www.kaggle.com/datasets/dharmik34/bank-term-deposit-subscription> | Assinatura de depósito a prazo como proxy de conversão. |
-| Telemarketing JYB Dataset - UCI | <https://www.kaggle.com/datasets/aguado/telemarketing-jyb-dataset> | Campanhas de contato e resposta, útil para comparação de canal ou abordagem. |
-
-Outras bases Kaggle são aceitas se o grupo justificar a aderência ao problema e documentar fonte, versão, licença, colunas, target e limitações. Não use uma base apenas porque ela é fácil de treinar; a escolha precisa sustentar uma pergunta de negócio sobre decisão adaptativa.
-
-Use a base Kaggle escolhida como ponto de partida para:
-
-- construir o baseline preditivo de propensão à conversão;
-- derivar contextos de decisão para a política adaptativa;
-- simular braços de oferta, mensagens, canais ou horários quando a informação não existir explicitamente no dataset;
-- avaliar a política com backtesting offline ou replay simulado;
-- documentar limitações, vieses e riscos de generalização.
-
-Tratamento mínimo da base escolhida:
-
-- descarte ou isole colunas que só seriam conhecidas depois da decisão, como `duration` no Bank Marketing;
-- registre no README do grupo como a base foi baixada, qual versão foi usada e qual licença se aplica;
-- preserve a referência ao Kaggle e à fonte original quando houver;
-- não misture o dataset com dados reais externos;
-- documente qualquer enriquecimento sintético criado pelo grupo.
-
-### Instruções para criação dos datasets derivados
-
-Cada grupo deve criar uma camada derivada própria, sem alterar a base Kaggle original. Essa camada deve ser versionada e documentada no repositório.
-
-Entregue, no mínimo:
-
-1. `data/kaggle/README.md`: fonte, link, versão, licença, colunas usadas, colunas descartadas e justificativa da escolha.
-2. `data/processed/`: base tratada para modelagem, sem colunas de vazamento temporal e com transformações explicadas.
-3. `data/synthetic_enrichment/offer_catalog.sample.csv`: catálogo de braços, ofertas, mensagens ou canais simulados.
-4. `data/synthetic_enrichment/offer_events.sample.csv`: eventos simulados de impressão, decisão, contexto e braço escolhido.
-5. `data/synthetic_enrichment/delayed_rewards.sample.csv`: recompensas simuladas com atraso, como clique, início de jornada e conversão.
-6. `data/golden_set/evaluation_cases.jsonl`: pelo menos 20 casos para avaliar decisão, explicação, guardrails e uso do assistente.
-7. `reports/data-generation.md`: descrição do processo de criação dos dados derivados, hipóteses, sementes aleatórias, limitações e riscos.
-
-## Desafio único — Experimentação Adaptativa em Ofertas Financeiras
+## Experimentação Adaptativa em Ofertas Financeiras
 
 Tema: **experimentação adaptativa em ofertas financeiras**.
 
@@ -176,6 +79,61 @@ Dados restritos:
 - patrimônio, saldo, renda, idade, gênero, raça ou qualquer dado sensível real;
 - regras comerciais privadas, metas internas, listas de leads ou segmentações proprietárias;
 - thresholds reais de aprovação, incentivo, remuneração ou campanha.
+
+## Regras de dados e publicação
+
+- Use uma base Kaggle compatível com marketing, ofertas, propensão, campanhas, recomendação ou conversão como base factual do projeto.
+- Use dados sintéticos apenas para enriquecer o problema com braços de decisão, recompensas intermediárias, eventos atrasados, políticas comerciais fictícias e golden set.
+- Não use dados reais de clientes, estudantes, professores, empresas parceiras ou sistemas internos.
+- Não publique segredos, tokens, chaves de API, dumps, traces, logs com dados sensíveis ou modelos binários grandes.
+- Não use atributos protegidos para discriminar pessoas ou grupos.
+- Documente a base legal, o propósito de uso, a minimização de dados e o ciclo de retenção.
+- Mantenha decisões sensíveis com humano no loop. O sistema deve apoiar análise e decisão; não deve executar bloqueios, reportes regulatórios ou recomendações financeiras autônomas sem controle humano.
+
+## Bases Kaggle orientadoras e criação dos datasets
+
+O grupo deve escolher uma base Kaggle adequada ao problema de experimentação adaptativa. A base não precisa ser única para todos os grupos, mas deve ter relação clara com marketing, ofertas, propensão, campanhas, recomendação, conversão ou comportamento de cliente.
+
+Exemplos de bases Kaggle que podem orientar a escolha:
+
+| Base | Link | Como usar no desafio |
+| --- | --- | --- |
+| Bank Marketing | <https://www.kaggle.com/datasets/henriqueyamahata/bank-marketing> | Campanhas bancárias, propensão de conversão e decisão de oferta. |
+| Bank Marketing Data Set | <https://www.kaggle.com/datasets/tunguz/bank-marketing-data-set> | Variação do problema de marketing bancário para comparação ou substituição. |
+| Bank Term Deposit Subscription | <https://www.kaggle.com/datasets/dharmik34/bank-term-deposit-subscription> | Assinatura de depósito a prazo como proxy de conversão. |
+| Telemarketing JYB Dataset - UCI | <https://www.kaggle.com/datasets/aguado/telemarketing-jyb-dataset> | Campanhas de contato e resposta, útil para comparação de canal ou abordagem. |
+
+Outras bases Kaggle são aceitas se o grupo justificar a aderência ao problema e documentar fonte, versão, licença, colunas, target e limitações. Não use uma base apenas porque ela é fácil de treinar; a escolha precisa sustentar uma pergunta de negócio sobre decisão adaptativa.
+
+Use a base Kaggle escolhida como ponto de partida para:
+
+- construir o baseline preditivo de propensão à conversão;
+- derivar contextos de decisão para a política adaptativa;
+- simular braços de oferta, mensagens, canais ou horários quando a informação não existir explicitamente no dataset;
+- avaliar a política com backtesting offline ou replay simulado;
+- documentar limitações, vieses e riscos de generalização.
+
+Tratamento mínimo da base escolhida:
+
+- descarte ou isole colunas que só seriam conhecidas depois da decisão, como `duration` no Bank Marketing;
+- registre no README do grupo como a base foi baixada, qual versão foi usada e qual licença se aplica;
+- preserve a referência ao Kaggle e à fonte original quando houver;
+- não misture o dataset com dados reais externos;
+- documente qualquer enriquecimento sintético criado pelo grupo.
+
+### Instruções para criação dos datasets derivados
+
+Cada grupo deve criar uma camada derivada própria, sem alterar a base Kaggle original. Essa camada deve ser versionada e documentada no repositório.
+
+Entregue, no mínimo:
+
+1. `data/kaggle/README.md`: fonte, link, versão, licença, colunas usadas, colunas descartadas e justificativa da escolha.
+2. `data/processed/`: base tratada para modelagem, sem colunas de vazamento temporal e com transformações explicadas.
+3. `data/synthetic_enrichment/offer_catalog.sample.csv`: catálogo de braços, ofertas, mensagens ou canais simulados.
+4. `data/synthetic_enrichment/offer_events.sample.csv`: eventos simulados de impressão, decisão, contexto e braço escolhido.
+5. `data/synthetic_enrichment/delayed_rewards.sample.csv`: recompensas simuladas com atraso, como clique, início de jornada e conversão.
+6. `data/golden_set/evaluation_cases.jsonl`: pelo menos 20 casos para avaliar decisão, explicação, guardrails e uso do assistente.
+7. `reports/data-generation.md`: descrição do processo de criação dos dados derivados, hipóteses, sementes aleatórias, limitações e riscos.
 
 ### Escopo técnico
 
@@ -434,7 +392,7 @@ log = DecisionLog(
 - Não use dados reais nem simule que a solução está pronta para produção regulada.
 - Não otimize apenas clique se isso conflitar com suitability, privacidade ou experiência do cliente.
 
-## Objetivo final — uma plataforma que aprende de forma automática
+## Objetivo final: uma plataforma que aprende de forma automática
 
 O alvo do Datathon não é apresentar um relatório com a melhor variante escolhida pela equipe. O alvo é entregar **uma plataforma que aprende de forma automática**, que ajusta a política de decisão à medida que os eventos chegam e as recompensas se confirmam.
 
@@ -452,38 +410,6 @@ A banca avalia se a entrega do grupo se comporta como plataforma, e não como ex
 - Se o **golden set, os guardrails e o monitoramento** são usados para barrar políticas que aprenderam atalhos errados ou exploraram caminhos indesejados.
 
 O Demo Day premia grupos que mostram um sistema que aprende sozinho qual é a melhor decisão a tomar, com humanos no papel de **revisores e responsáveis pela governança** — e não no papel de juízes de cada experimento.
-
-## Checklist antes do Demo Day
-
-- [ ] O README do repositório do grupo explica o desafio, a execução local e as limitações.
-- [ ] O pipeline usa uma base Kaggle compatível e documenta download, versão, fonte, licença e limitações.
-- [ ] A base processada e o enriquecimento sintético estão documentados e separados da base Kaggle original.
-- [ ] Os experimentos estão rastreados em MLflow ou ferramenta equivalente.
-- [ ] Há pelo menos um baseline e uma abordagem principal comparados com métricas justificadas.
-- [ ] A análise algorítmica referencia Thompson Sampling e Nilos-UCB, com justificativa de escolha ou descarte.
-- [ ] A avaliação inclui um golden set com pelo menos 20 exemplos.
-- [ ] A camada de retreino, teste, aprovação estruturada e promoção de novas políticas está documentada.
-- [ ] O serviço, API, notebook executável ou interface demonstrável funciona com instruções claras.
-- [ ] A arquitetura-alvo e o plano de deploy usam exclusivamente serviços Azure.
-- [ ] O fluxo de trabalho da aplicação está documentado com diagrama Mermaid e explicação dos componentes.
-- [ ] Os guardrails foram testados com cenários adversariais.
-- [ ] Model Card, System Card e plano LGPD estão completos.
-- [ ] O pitch separa problema, abordagem, demonstração, evidências, riscos e impacto.
-- [ ] O pitch cobre FinOps com ROI, custo qualitativo por serviço Azure e Total Cost of Ownership.
-- [ ] O pitch justifica a arquitetura técnica com diagrama, fronteiras de componentes e alternativas descartadas.
-- [ ] O pitch apresenta cenários de escala e redução por volume de requisições, indicando comportamento de cada serviço sob baixa e alta carga.
-- [ ] O pitch inclui demonstração ao vivo ou gravada da plataforma em operação, com plano de contingência caso a execução ao vivo falhe (desejável, soma pontos extras na avaliação).
-
-## Conexão com os grupos de estudo
-
-Use os grupos de estudo da Fase 05 como apoio para cada etapa:
-
-| Etapa | Material de apoio |
-| --- | --- |
-| Entendimento e pipeline de dados | [GE 01](../../grupos-de-estudo/ge-01-entendimento-do-problema-e-pipeline-de-dados/) |
-| Modelo avançado e agente com LLM | [GE 02](../../grupos-de-estudo/ge-02-modelo-avancado-e-agente-com-llm/) |
-| Avaliação, monitoramento e observabilidade | [GE 03](../../grupos-de-estudo/ge-03-avaliacao-monitoramento-e-observabilidade/) |
-| Segurança, governança e Demo Day | [GE 04](../../grupos-de-estudo/ge-04-seguranca-governanca-e-demo-day/) |
 
 ## Proveniência e revisão
 
@@ -583,3 +509,66 @@ Os entregáveis abaixo são organizados em nove etapas acumulativas (0–8). Cad
    - Cobertura no pitch dos critérios de apresentação: FinOps com ROI, custo por serviço Azure e Total Cost of Ownership; justificativa de arquitetura técnica com diagrama, fronteiras de componentes e alternativas descartadas; cenários de escala e redução explicando maleabilidade arquitetônica sob diferentes volumes de requisições.
    - Plano de revisão periódica do model card e do system card com responsáveis e cadência definidos.
    - *Evidência de aceite:* a banca encontra narrativa coerente de problema, solução, evidências, riscos, governança e valor de negócio, sem alegar prontidão para produção real regulada.
+
+## Critérios de avaliação
+
+A avaliação segue o contrato da Fase 05:
+
+| Dimensão | Peso | O que a banca procura |
+| --- | ---: | --- |
+| Critérios de negócio | 30% | aderência ao problema escolhido, clareza de impacto, viabilidade, comunicação executiva |
+| Validação técnica global | 70% | pipeline, MLOps, avaliação, observabilidade, segurança, governança, documentação e uso de PyTorch/MLflow quando aplicável |
+
+Os grupos devem definir métricas específicas para o desafio. Essas métricas precisam ser justificadas no relatório técnico e conectadas ao impacto de negócio, mas não substituem os critérios oficiais da fase.
+
+### Critério obrigatório — Arquitetura-alvo em Azure
+
+A entrega arquitetural do Datathon deve ser planejada exclusivamente para Microsoft Azure. O grupo não precisa publicar recursos pagos nem manter uma implantação ativa em nuvem, mas deve apresentar uma arquitetura-alvo Azure, um plano de implantação e a justificativa dos serviços escolhidos. Arquiteturas baseadas em AWS, Google Cloud, provedores locais ou soluções genéricas multi-cloud ficam fora do escopo da avaliação, exceto quando usadas apenas como comparação breve de trade-offs.
+
+A banca não espera uma arquitetura única. O grupo pode escolher diferentes combinações de serviços Azure, desde que a proposta cubra computação, exposição de API ou interface, persistência de dados, observabilidade, segurança/governança e o componente de IA/RAG quando aplicável.
+
+| Categoria | Exemplos de serviços Azure aceitáveis |
+| --- | --- |
+| Computação e execução | Azure Container Apps, Azure App Service, Azure Functions, AKS, Azure Machine Learning endpoints, Azure Databricks Jobs |
+| API, interface e integração | Azure API Management, endpoints em App Service/Container Apps, Azure Functions HTTP, Azure Static Web Apps, Azure Front Door quando fizer sentido |
+| Dados e eventos | Azure Blob Storage ou Data Lake Storage Gen2, Azure SQL, Azure Database for PostgreSQL, Azure Cosmos DB, Azure Service Bus, Azure Event Hubs |
+| IA, agentes e RAG | Azure AI Foundry, Azure OpenAI/Foundry Models, Azure AI Search, Azure Machine Learning, embeddings, busca vetorial, busca híbrida ou semântica |
+| Observabilidade | Azure Monitor, Application Insights, Log Analytics, dashboards, alertas e rastreamento de métricas técnicas e de negócio |
+| Segurança e governança | Microsoft Entra ID, Managed Identity, Azure Key Vault, RBAC, Azure Policy, private endpoints/VNet quando justificado, plano LGPD e revisão humana |
+
+A arquitetura deve explicar como decisões, experimentos, políticas, modelos, prompts e versões seriam rastreados. Também deve indicar quais métricas seriam monitoradas em produção, incluindo latência, disponibilidade, custo estimado, qualidade da recomendação, exploração, fairness, segurança e uso do assistente com LLM.
+
+### Critérios de apresentação
+
+Além do conteúdo técnico, a banca avalia trê dimensões específicas durante o pitch do Demo Day. Os grupos devem reservar tempo no roteiro para tratar cada uma delas com evidência (números, faixas, diagramas, premissas), não apenas com afirmação.
+
+| Dimensão | O que a banca procura |
+| --- | --- |
+| FinOps (ROI, custo e TCO) | Estimativa qualitativa de custo de execução por serviço Azure escolhido, projeção de Retorno sobre Investimento (ROI) considerando o ganho de negócio esperado da política adaptativa em relação a uma campanha estática, e Total Cost of Ownership (TCO) cobrindo desenvolvimento, operação, observabilidade, retreino, governança e suporte. O grupo deve discutir trade-offs entre alternativas mais baratas e mais caras, identificar o ponto de equilíbrio em que a plataforma adaptativa compensa o custo adicional e indicar quais componentes geram custo mesmo ociosos. |
+| Arquitetura técnica | Justificativa explícita de cada serviço Azure escolhido, mapeamento dos limites entre componentes, fluxos de dados e de decisão, pontos de falha, fronteiras de segurança e identidade, e como o ciclo de vida de modelos e políticas é controlado. A banca espera coerência entre o diagrama de componentes, o código do repositório e o plano de operação, sem zonas cinzentas entre camadas, e racional sobre alternativas descartadas. |
+| Cenários de escala e redução | Maleabilidade arquitetônica em função do volume de requisições: como a arquitetura cresce de um cenário de baixa carga (poucas decisões por hora, experimentação isolada) para alta carga (picos sazonais, campanhas simultâneas, múltiplos canais), e como a redução é tratada quando o uso cai. O grupo deve indicar quais serviços escalam automaticamente, quais exigem ajuste manual, quais geram custo mesmo ociosos, e como o sistema preserva latência aceitável, qualidade da exploração e garantias de segurança sob pressão. |
+
+A análise não exige números reais de produção, mas exige racional consistente. Estimativas qualitativas, comparações relativas, faixas de magnitude e cenários hipotéticos com premissas claras são aceitos, desde que apresentados com transparência sobre as suposições e referência ao diagrama de arquitetura Azure do repositório.
+
+Demonstrações ao vivo ou gravadas durante a apresentação são desejáveis e somam pontos extras na avaliação. Um pitch que mostra a plataforma decidindo — selecionando um braço, registrando a recompensa, evoluindo a política e reagindo a um cenário adversarial — tem peso narrativo maior do que um pitch que apenas descreve o que o sistema faria, mesmo quando o cenário é sintético ou executado em ambiente local. Os grupos devem reservar tempo de pitch para a demonstração e prever um plano de contingência caso ela falhe ao vivo (por exemplo, gravação alternativa, dataset de demonstração reduzido, cenário pré-renderizado).
+
+## Checklist antes do Demo Day
+
+- [ ] O README do repositório do grupo explica o desafio, a execução local e as limitações.
+- [ ] O pipeline usa uma base Kaggle compatível e documenta download, versão, fonte, licença e limitações.
+- [ ] A base processada e o enriquecimento sintético estão documentados e separados da base Kaggle original.
+- [ ] Os experimentos estão rastreados em MLflow ou ferramenta equivalente.
+- [ ] Há pelo menos um baseline e uma abordagem principal comparados com métricas justificadas.
+- [ ] A análise algorítmica referencia Thompson Sampling e Nilos-UCB, com justificativa de escolha ou descarte.
+- [ ] A avaliação inclui um golden set com pelo menos 20 exemplos.
+- [ ] A camada de retreino, teste, aprovação estruturada e promoção de novas políticas está documentada.
+- [ ] O serviço, API, notebook executável ou interface demonstrável funciona com instruções claras.
+- [ ] A arquitetura-alvo e o plano de deploy usam exclusivamente serviços Azure.
+- [ ] O fluxo de trabalho da aplicação está documentado com diagrama Mermaid e explicação dos componentes.
+- [ ] Os guardrails foram testados com cenários adversariais.
+- [ ] Model Card, System Card e plano LGPD estão completos.
+- [ ] O pitch separa problema, abordagem, demonstração, evidências, riscos e impacto.
+- [ ] O pitch cobre FinOps com ROI, custo qualitativo por serviço Azure e Total Cost of Ownership.
+- [ ] O pitch justifica a arquitetura técnica com diagrama, fronteiras de componentes e alternativas descartadas.
+- [ ] O pitch apresenta cenários de escala e redução por volume de requisições, indicando comportamento de cada serviço sob baixa e alta carga.
+- [ ] O pitch inclui demonstração ao vivo ou gravada da plataforma em operação, com plano de contingência caso a execução ao vivo falhe (desejável, soma pontos extras na avaliação).

@@ -13,6 +13,8 @@
 - Adicionadas referências algorítmicas a Thompson Sampling e Nilos-UCB, exemplo financeiro de inferência contextual e exigência de camada de retreino, aprovação e gestão do ciclo de vida de políticas adaptativas.
 - Criado o índice local de Datathon da Fase 05 em `fase-05-deploy-avancado-de-ia-generativa/datathon/README.md`.
 - Atualizados os indicadores públicos de cobertura da MLET7 e o README da Fase 05 para apontar para o novo pacote.
+- Reestruturado o README do Datathon 7-MLET espelhando edições estruturais aplicadas pela equipe de plataforma no `.docx`: a seção "Desafio único — Experimentação Adaptativa em Ofertas Financeiras" foi renomeada para "Experimentação Adaptativa em Ofertas Financeiras" e promovida para logo após "Visão geral"; a subseção "Escopo técnico" foi reparentada para dentro de "Bases Kaggle orientadoras e criação dos datasets"; "Objetivo final" passou a usar dois-pontos em vez de em-dash; a seção "Conexão com os grupos de estudo" foi removida; a ordem da metade inferior passou a ser Objetivo final → Proveniência e revisão → Entregáveis obrigatórios → Critérios de avaliação → Checklist antes do Demo Day (última), substituindo a ordem anterior em que "Entregáveis obrigatórios" fechava o documento.
+- Publicado `fase-05-deploy-avancado-de-ia-generativa/datathon/7mlet/README.docx` co-localizado com o `README.md`, seguindo o padrão do pacote 6-MLET (`datathon/6mlet/README.md` + `README.docx`), gerado a partir do `README.md` para garantir paridade estrutural entre as duas representações.
 
 ## 2026-05-07
 
