@@ -1,0 +1,23 @@
+# Core
+numpy>=1.26
+pandas>=2.2
+pyarrow>=15.0
+pydantic>=2.8
+
+# ML / pipeline / validation
+scikit-learn>=1.4
+scipy>=1.11
+pandera>=0.18
+
+# Streaming / online learning
+river>=0.21
+
+# Visualização
+matplotlib>=3.8
+
+# Notebooks
+ipykernel>=6.29
+jupyterlab>=4.0
+
+# Tracking (opcional — fallback no notebook)
+mlflow>=2.10

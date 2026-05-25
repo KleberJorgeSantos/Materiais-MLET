@@ -90,3 +90,37 @@ Análise do problema real fornecido pela empresa convidada, exploração de dado
 - [Atividade do aluno](atividade-do-aluno.md)
 - [Checklist tech challenge](checklist-tech-challenge.md)
 - [Script Python de apoio](apoio_estudo.py)
+- [Notebooks práticos](notebooks/README.md) — 5 notebooks executáveis cobrindo o ciclo "Entendimento do Problema → Pipeline de Dados"
+- [Gerador de dataset sintético](dataset/README.md) — Telco churn determinístico (seed=42, 8 000 linhas)
+- [`requirements.txt`](requirements.txt) — dependências fixadas para o venv do encontro
+
+---
+
+## 🧪 Notebooks Práticos
+
+Os notebooks abaixo materializam o roteiro do encontro com um dataset sintético de **Telco churn** (gerado pelo script em [`dataset/generate_dataset.py`](dataset/generate_dataset.py)). Servem como **espinha técnica** para a Etapa 1 do Tech Challenge: cada notebook entrega um critério de aceite reproduzível.
+
+| # | Notebook | O que entrega | Item do checklist |
+|---|----------|---------------|-------------------|
+| 1 | [`01_validacao_pre_treinamento.ipynb`](notebooks/01_validacao_pre_treinamento.ipynb) | Contrato `pandera` (21 colunas), readiness report e veredito GO/NO-GO em JSON | EDA documentada + pipeline reprodutível |
+| 2 | [`02_golden_layer_vs_sklearn_pipelines.ipynb`](notebooks/02_golden_layer_vs_sklearn_pipelines.ipynb) | Medalhão (Bronze→Silver→Gold) × `sklearn.Pipeline` + `StratifiedKFold` + anti-pattern de *leakage* | Pipeline versionado e separação exploração/execução |
+| 3 | [`03_streaming_pipelines_treinamento.ipynb`](notebooks/03_streaming_pipelines_treinamento.ipynb) | Treino *out-of-core* com `SGDClassifier.partial_fit` + `river` online + tracking MLflow | Baseline treinado + tracking desde o primeiro experimento |
+| 4 | [`04_profiling_pos_treinamento.ipynb`](notebooks/04_profiling_pos_treinamento.ipynb) | Split 70/15/15, PSI, *learning curve*, *slice metrics*, esboço de Model Card | Métricas mapeadas a KPIs e relatório de viabilidade |
+| 5 | [`05_drift_continuo_e_agentes.ipynb`](notebooks/05_drift_continuo_e_agentes.ipynb) | Drift contínuo (PSI + KS), agente ReAct com `TOOLS` dict, *ledger* JSON-lines e stub LLM | Próximo passo (operação) já antecipado para a Fase 05 |
+
+**Receita de execução** (Python 3.13, qualquer SO):
+
+```bash
+python -m venv .venv
+.venv\Scripts\activate                     # PowerShell
+# OU
+source .venv/bin/activate                  # bash/zsh
+
+pip install -r requirements.txt
+python -m ipykernel install --user --name encontro01 --display-name "Python (encontro-01)"
+
+python dataset/generate_dataset.py         # gera dataset/processed/telco_churn.{parquet,csv}
+jupyter lab notebooks                      # Run All em cada notebook
+```
+
+> **Conexão com Fase 05:** o exemplo é supervisionado clássico (churn), mas as práticas — contrato de schema, pipeline single-source, profiling por *slice*, drift contínuo, agente orquestrador — transferem para o cenário generativo da Fase 05. Os notebooks 4 e 5 já preparam o vocabulário (Model Card, ledger de decisões, tools dict) que será usado nas próximas etapas com LLMs e RAG.
