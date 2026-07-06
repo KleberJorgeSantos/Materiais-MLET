@@ -25,6 +25,14 @@ Esta disciplina cobre 8 temas progressivos: desde fundamentos até aplicação e
 
 AWS, Airflow, Azure, Datadog, MLflow
 
+## Material Executavel e Fonte
+
+O material executavel local da disciplina esta em [live_materials](live_materials/), com exemplos de pipeline de treinamento, inferencia, monitoramento, Prometheus, Grafana, Docker e Terraform. As pastas de aula tambem mantem notebooks e scripts compactos para estudo local.
+
+- Repositorio fonte entregue pelo conteudista: <https://github.com/rntavares/9mlet>
+- Observacao de curadoria: o repositorio fonte reune apostilas, desafios, roteiro e slides; nao ha pacote de codigo executavel versionado alem do `README.md`.
+- Licenca: o repositorio fonte nao declara arquivo de licenca no conteudo versionado.
+
 ## Referências Principais
 
 - Microsoft Azure (2023)

@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-05-29
+
+- Alinhado o bloco de Demo Day da Etapa 8 do Datathon 7-MLET ao PDF oficial enviado aos alunos, mantendo a demonstração ao vivo ou gravada como desejável e bonificada, sem endurecer requisitos adicionais no README.
+
+## 2026-05-24
+
+- Adicionado o pacote de codigo da disciplina Data Drift em `fase-04-monitoramento-e-governanca/01-data-drift/codigo-fonte/9mlet-data-drift/`, preservando notebooks, scripts, testes, documentacao e dependencias do repositorio fonte.
+- Registrado no README da disciplina o link para o repositorio fonte `https://github.com/Miyake-Diogo/9mlet-data-drift` e a licenca MIT declarada pelo material original.
+- Registrado no README de Monitoramento de Pipelines e Infraestrutura o repositorio fonte `https://github.com/rntavares/9mlet`, com nota de curadoria indicando que a entrega versionada contem apostilas, desafios, roteiro e slides, mas nao um pacote de codigo executavel.
+
 ## 2026-05-22
 
 - Adicionado o pacote público do Datathon 7-MLET em `fase-05-deploy-avancado-de-ia-generativa/datathon/7mlet/`, com o desafio financeiro sanitizado de experimentação adaptativa em ofertas.

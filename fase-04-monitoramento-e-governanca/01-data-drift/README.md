@@ -25,6 +25,14 @@ Esta disciplina cobre 8 temas progressivos: desde fundamentos até aplicação e
 
 Evidently
 
+## Material de Codigo
+
+O pacote executavel da disciplina esta em [codigo-fonte/9mlet-data-drift](codigo-fonte/9mlet-data-drift/). Ele preserva o material de origem do conteudista, com notebooks, scripts, testes, documentacao de arquitetura e dependencias por aula.
+
+- Repositorio fonte: <https://github.com/Miyake-Diogo/9mlet-data-drift>
+- Licenca declarada no material fonte: MIT, em [codigo-fonte/9mlet-data-drift/LICENSE](codigo-fonte/9mlet-data-drift/LICENSE)
+- Dependencias: use [codigo-fonte/9mlet-data-drift/requirements.txt](codigo-fonte/9mlet-data-drift/requirements.txt) ou os arquivos `requirements.txt` de cada aula.
+
 ## Referências Principais
 
 - Chip Huyen, 'Designing Machine Learning Systems' (O’Reilly, 2022)
